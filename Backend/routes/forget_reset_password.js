@@ -18,11 +18,14 @@ router.post("/forgot-password", async (req, res) => {
   try {
     // Check if the user exists
     const user = await User.findOne({ where: { email } });
-    if (!user) return res.status(404).send("User not found");
+    if (!user) {
+      console.log(`User with email ${email} not found`);
+      return res.status(404).send("User not found");
+    }
 
     // Generate a reset token
     const token = crypto.randomBytes(20).toString("hex");
-    const expiry = new Date(Date.now() + 3600000); 
+    const expiry = new Date(Date.now() + 3600000); // 1 hour
 
     // Update user with reset token and expiry
     await user.update({
@@ -36,13 +39,13 @@ router.post("/forgot-password", async (req, res) => {
       host: "smtp.gmail.com",
       port: 465,
       auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS, 
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Email content
-    const frontendUrl = process.env.FRONTEND_URL; 
+    const frontendUrl = process.env.FRONTEND_URL;
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
@@ -52,36 +55,14 @@ router.post("/forgot-password", async (req, res) => {
 
     // Send the email
     await transporter.sendMail(mailOptions);
+    console.log(`Password reset email sent to ${user.email}`);
     res.send("Password reset link sent to your email");
   } catch (error) {
-    console.error(error);
+    console.error(`Error occurred while processing forgot-password request: ${error.message}`);
     res.status(500).send("An error occurred");
   }
 });
 
-// Render Reset Password Form
-router.get("/reset-password", (req, res) => {
-  const { token } = req.query;
-
-  if (!token) {
-    return res.status(400).send("Token is required");
-  }
-
-  // Read the HTML file
-  const filePath = path.join(__dirname, "../views/reset_password.html");
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Error reading the reset password file");
-    }
-
-    // Replace the token placeholder with the actual token
-    const htmlContent = data.replace("${token}", token);
-
-    // Send the HTML content
-    res.send(htmlContent);
-  });
-});
 
 
 // Reset Password Route
