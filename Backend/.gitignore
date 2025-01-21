@@ -1,0 +1,61 @@
+# Environment configuration
+.env
+
+#Postgre connection
+const { Sequelize } = require('sequelize');
+require('dotenv').config(); // Load environment variables from .env file
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Only use this if necessary, for cloud-hosted DBs like Render
+    },
+  },
+});
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Connected to PostgreSQL successfully");
+  } catch (error) {
+    console.error("Unable to connect to PostgreSQL:", error);
+  }
+})();
+
+module.exports = sequelize;
+
+
+
+#mySQL connection
+// db.js (MySQL connection setup)
+const { Sequelize } = require("sequelize");
+require("dotenv").config(); // Load environment variables from .env file
+
+// Create a Sequelize instance with MySQL credentials from environment variables
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect: "mysql",
+  }
+);
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Connected to MySQL");
+  } catch (error) {
+    console.error("Unable to connect to MySQL:", error);
+  }
+})();
+
+module.exports = sequelize;
+
+
+//
+To avoid unnecessary data fetching when the data is already cached, you can modify the logic to check whether the data is available locally before fetching it again. If the data is cached,
+you can skip the fetching process and use the local cache
