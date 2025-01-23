@@ -19,6 +19,7 @@ const validateEmail = (email) => {
 // Register Admin
 router.post("/register-admin", async (req, res) => {
   const { name, email, password } = req.body;
+
   // Validate input
   if (!name || !email || !password) {
     return res.status(400).json({ error: "All fields are required." });
@@ -26,6 +27,7 @@ router.post("/register-admin", async (req, res) => {
   if (!validateEmail(email)) {
     return res.status(400).json({ error: "Invalid email format." });
   }
+
   const hashedPassword = await bcrypt.hash(password, 10);
   const transaction = await sequelize.transaction(); // Begin transaction
 
@@ -35,19 +37,17 @@ router.post("/register-admin", async (req, res) => {
       { transaction }
     );
 
-
-    // Set expiry date to a few minutes from now for testing purpose
-    const subscriptionDurationMinutes = 2; // Set duration to 5 minutes for testing
+    // Set expiry date to 7 days from now
+    const subscriptionDurationDays = 7; // Set duration to 7 days
     const expiryDate = new Date();
-    expiryDate.setMinutes(expiryDate.getMinutes() + subscriptionDurationMinutes); // Set expiry to 5 minutes from now
+    expiryDate.setDate(expiryDate.getDate() + subscriptionDurationDays); // Add 7 days to the current date
 
-  
     await Subscription.create(
       {
         userId: user.id,
         subscriptionStatus: "active",
         subscriptionExpiry: expiryDate,
-        duration: subscriptionDurationMinutes, // Duration set in minutes for testing
+        duration: subscriptionDurationDays, // Duration set in days
       },
       { transaction }
     );

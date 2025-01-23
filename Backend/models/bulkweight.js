@@ -6,12 +6,13 @@ class BulkWeight extends Model {}
 BulkWeight.init(
   {
     bags: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
         min: 0,
       },
     },
+    
     weight: {
       type: DataTypes.FLOAT,
       allowNull: false,
