@@ -23,6 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 // Use CORS middleware
 app.use(cors());
 
+
+
+
+
 // Sync Sequelize models
 sequelize
   .sync()

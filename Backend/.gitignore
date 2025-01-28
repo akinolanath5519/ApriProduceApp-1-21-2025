@@ -56,6 +56,89 @@ const sequelize = new Sequelize(
 module.exports = sequelize;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+const { Pool } = require('pg');
+
+// Load environment variables from a .env file
+require('dotenv').config();
+
+// Create a connection pool to PostgreSQL
+const pool = new Pool({
+  user: process.env.DB_USER,          // Database user (from .env)
+  host: process.env.DB_HOST,          // Cloud SQL socket path or localhost (from .env)
+  database: process.env.DB_NAME,      // Database name (from .env)
+  password: process.env.DB_PASSWORD,  // Database password (from .env)
+  port: process.env.DB_PORT,          // Default port is 5432 (from .env)
+});
+
+// Function to query the database
+async function queryDatabase(query, params = []) {
+  try {
+    const res = await pool.query(query, params);
+    return res.rows;
+  } catch (err) {
+    console.error('Database query error:', err.message);
+    throw err; // Rethrow the error
+  }
+}
+
+// Export the pool and queryDatabase function
+module.exports = { pool, queryDatabase };
+
+
+
 //
 To avoid unnecessary data fetching when the data is already cached, you can modify the logic to check whether the data is available locally before fetching it again. If the data is cached,
 you can skip the fetching process and use the local cache
+
+
+
+//Database optimizations
+Pagination for GET /commodity: Introduced limit and offset to control the number of commodities fetched in each request. This prevents loading large datasets, improving performance.
+Reduced excessive logging: Added conditional logging that only happens in development environments to reduce overhead in production.
+Optimized database queries: If you expect large data sets, make sure your database is indexed properly (e.g., on adminEmail and id).
+Error Handling: Retained robust error handling for all routes, with more informative logging during development.
+Next Steps:
+Database Indexing: Ensure that fields like adminEmail and id are indexed in your database for faster queries.
+Connection Pooling: Check your database connection pooling to handle concurrent requests efficiently.
+Environment-based Configurations: Consider further optimizations based on whether you’re running in production or development.
+
+
+
+
+//correct cloud SQL connection
+const { Sequelize } = require('sequelize');
+require('dotenv').config(); // Load environment variables from .env file
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST, // This should be the Cloud SQL socket path
+  dialect: 'postgres',
+  dialectOptions: {
+    // Remove SSL if the server doesn't support it
+    ssl: false, // Disable SSL
+  },
+  logging: console.log, // Enable logging to see queries in the console (optional)
+});
+
+(async () => {
+  try {
+    await sequelize.authenticate(); // Test the connection
+    console.log("Connected to PostgreSQL successfully");
+  } catch (error) {
+    console.error("Unable to connect to PostgreSQL:", error);
+  }
+})();
+
+module.exports = sequelize;

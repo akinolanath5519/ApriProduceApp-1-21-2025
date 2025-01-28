@@ -1,0 +1,21 @@
+runtime: nodejs20  # Specify the Node.js runtime version
+
+automatic_scaling:
+  min_instances: 0  # No instances will run when there's no traffic (to minimize cost)
+  max_instances: 5  # Maximum 5 instances if traffic increases
+  target_cpu_utilization: 0.6  # Set the target CPU utilization for scaling decisions
+  target_throughput_utilization: 0.5  # Control throughput usage to optimize for cost
+
+env_variables:
+  NODE_ENV: "production"  # Set the environment to production for performance optimization
+
+handlers:
+  - url: /health  # Health check to monitor app availability
+    script: auto
+  - url: /.*  # Match all URLs for your app
+    script: auto
+
+# Optional: Configure error handlers
+error_handlers:
+  - error_code: over_quota
+    file: over_quota.html  # Optional: Custom error page when the app hits quota limits

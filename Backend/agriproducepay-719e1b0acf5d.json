@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "agriproducepay",
+  "private_key_id": "719e1b0acf5d82e5569ae23c9891a80005825aaa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDWKpslSUMqkUwe\nuTjBQscu4xwM7A3eTGw/w+Z35iZsn72q9Z+YrcD3FwaE2izywtuHRjbQTDLuoCza\nkE1aPum4CQ936Wz7ywlZYvx84w3sjUQYOpIRsRHzqO7Z0HHDx3VHeoLlqx/j4+7t\n5Gwim+/BMh2afaHwCdR668bOCDzDJ391N8SEoAlRTsvm3/AUO3AbWpf87xMa6iXo\nbwraP6OL/FMRPr7b1UZaOU5yPljUEsfJ3VsJ7sYxqOcmNiX7Phbq1t8h7W3OcWNs\nVRmdSc77YcxD0wThAmTMcAeDpFZz23AbpZeh6WK0YNNh3PebBwQYVE5z6JnFDhfz\ng/7Po6t1AgMBAAECggEAEOcu9IvqOa9bDye2Q4aWOuyg16I/2/YzKvs2sureyH75\nFMerD31TOA1ArfacSpK3id8wT1NcR7oroBp4iHFjt+s7Jc8uE1dshvoJjH/NJwjl\nQXZJ9gyAKreAFn/dosKYzonsT90oOK/SOUNoh3jAPQLMFFfrEotsEkGOoM9EoHBW\nHtZph4YP5GxibfhJIiRnQ7TKEFHjEN9ehBH46g2dsk+7SQXsyJYV4RhN64UwlrSX\nlgkEROxkiDc+beg9dsDG57sba8++DM714yQhxFxv/8DShKQEIrfsgaoYDi352klz\n9lo55EJNTtNmRlvbTjx0NuVGy2/yhZVjaEn7MofdMQKBgQD06SBsrYVFhiBR6AOE\n3NmLTfKTtPVe7qrt4lM3XQsoYJE248J6pb2mVcLgyBf6bhEaLi3KAxFqcBaFFADl\n0QTLFPwVenDsskmJwyQ41OXVhgLBhVl3u7AAO1BdHD7T5G09wwLUJKQN/YPABADJ\n5inJJWAa180//s/WnK1oCTVlTQKBgQDf3RvagO7+K7pM10GgOfRFwLV1ihM5DCEo\nXMuf0VDm98bKR5toJG4QwJ/A/nR2aFLhhP0ILti7qtD74ujXMRENDcF9UOp1c7UX\nmILRRGib4iolUscEqJkIQk1Jbz1SC2s2+8D3e2FqI2PwENGHjjjxPMW+U6NIrFab\nInS33DqqyQKBgEYI6HnLgSHpghKKC3+R/C/G4Yh1pfk4vO572xoo5EjunHga14Fl\nJf+L5MeM0LaPhRp8fCGZkQBj/zydBMizZfCBFrk5o1M8hKT9hb0uvG67/MvES1pe\n9KyMSaXmrty/JLIVsxhhRfyuM1/UhTk3NVnM81eZwJr9TgfsE/Z9M6S9AoGAdMfX\nm+jew+Dz0toH9hnFgA3Dm4ln9b6KHZAq+TgsSBDBtwwb2fwHHt4deIRFJO/PLK4/\ngWFO1reJRZ1dccS67GBcq47mgFbYBXMd6yUQnSEic033XErHajOMNd690mr6hzhV\ntcS7UK8dl0Juy5Q5yD63uU3QRD0DAPK8iJ1uTWECgYB0RNLz98gea6izhNDDCI3+\nuQesOtCGoZTJ2uWbFMqVyCb05Kzwb5y1gWZXJlVa2MpJPPgdRP5k6FnMIkp1ZdM+\n1P3Ym8zAv/mlJc69Pj6vOrtx5+Ykvjv76T+q/DlipMlppZbvfdGCYc+t3fD3HfOc\nFt0cEtFP5MnMZs4lQ0TbiA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "agriproducepay@agriproducepay.iam.gserviceaccount.com",
+  "client_id": "100636495849016289620",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/agriproducepay%40agriproducepay.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

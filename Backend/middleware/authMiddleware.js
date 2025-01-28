@@ -7,7 +7,6 @@ const moment = require('moment');
 
 
 
-
 // Authentication Middleware
 const authMiddleware = (req, res, next) => {
     const token = req.header('Authorization').replace('Bearer ', '');
