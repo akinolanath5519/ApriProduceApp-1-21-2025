@@ -1,5 +1,8 @@
 # Environment configuration
 .env
+.gcloudignore
+app.yaml
+agriproducepay-719e1b0acf5d.json
 
 #Postgre connection
 const { Sequelize } = require('sequelize');

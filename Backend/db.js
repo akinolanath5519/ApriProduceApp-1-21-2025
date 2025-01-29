@@ -1,23 +1,27 @@
-const { Sequelize } = require('sequelize');
-require('dotenv').config(); // Load environment variables from .env file
+// db.js (MySQL connection setup)
+const { Sequelize } = require("sequelize");
+require("dotenv").config(); // Load environment variables from .env file
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST, // This should be the Cloud SQL socket path
-  dialect: 'postgres',
-  dialectOptions: {
-    // Remove SSL if the server doesn't support it
-    ssl: false, // Disable SSL
-  },
-  logging: console.log, // Enable logging to see queries in the console (optional)
-});
+// Create a Sequelize instance with MySQL credentials from environment variables
+const sequelize = new Sequelize(
+  process.env.MySQL_DB_NAME,
+  process.env.MySQL_DB_USER,
+  process.env.MySQL_PASSWORD,
+  {
+    host: process.env.MySQL_HOST,
+    dialect: "mysql",
+  }
+);
 
 (async () => {
   try {
-    await sequelize.authenticate(); // Test the connection
-    console.log("Connected to PostgreSQL successfully");
+    await sequelize.authenticate();
+    console.log("Connected to MySQL");
   } catch (error) {
-    console.error("Unable to connect to PostgreSQL:", error);
+    console.error("Unable to connect to MySQL:", error);
   }
 })();
 
 module.exports = sequelize;
+
+
