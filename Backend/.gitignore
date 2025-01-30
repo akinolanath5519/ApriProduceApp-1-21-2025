@@ -4,6 +4,11 @@
 app.yaml
 agriproducepay-719e1b0acf5d.json
 
+
+
+##DATABASE_URL=postgresql://agriproducepaydb_user:X6gJHIZFUz3q6uiNVySLpaB5un212XUf@dpg-cu6jejbtq21c73882s20-a.oregon-postgres.render.com/agriproducepaydb
+##DATABASE_URL=postgresql://mrsegun:Akinoladeborah1@34.140.121.121/agriproducepaydb
+
 #Postgre connection
 const { Sequelize } = require('sequelize');
 require('dotenv').config(); // Load environment variables from .env file
