@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config(); // Load environment variables from .env file
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(process.env.DigitalOcean_DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
