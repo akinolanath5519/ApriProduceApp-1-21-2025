@@ -24,7 +24,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
     ssl: {
       require: true,
       rejectUnauthorized: false, // Allow self-signed certificates
-      ca: fs.readFileSync(certificatePath), // Add the SSL certificate for secure connection
+      ca: fs.readFileSync(certificatePath).toString(), // Add the SSL certificate for secure connection
     },
   },
 });
