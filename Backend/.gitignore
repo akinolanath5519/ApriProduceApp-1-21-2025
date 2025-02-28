@@ -1,8 +1,10 @@
 # Environment configuration
 .env
 .gcloudignore
-app.yaml
 agriproducepay-719e1b0acf5d.json
+ca-certificate.crt
+
+
 
 
 
@@ -66,6 +68,36 @@ module.exports = sequelize;
 
 
 
+google cloud postgre connection
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect: "postgres",
+    dialectOptions: {
+      socketPath: process.env.DB_HOST, 
+      ssl: false, // Disable SSL
+    },
+    port: process.env.DB_PORT,
+    logging: false, // Optional: Disable logs
+  }
+);
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("✅ Connected to PostgreSQL successfully");
+  } catch (error) {
+    console.error("❌ Unable to connect to PostgreSQL:", error);
+  }
+})();
+
+module.exports = sequelize;
 
 
 
@@ -150,3 +182,18 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 })();
 
 module.exports = sequelize;
+
+
+
+
+
+
+
+
+
+Here's the optimized code incorporating all cost-saving strategies:
+
+Efficient database queries (fetch only required fields)
+Redis caching to reduce repeated queries
+Batch delete to minimize database operations
+Reduced logging to save cloud costs

@@ -37,17 +37,17 @@ router.post("/register-admin", async (req, res) => {
       { transaction }
     );
 
-    // Set expiry date to 7 days from now
-    const subscriptionDurationDays = 7; // Set duration to 7 days
+    // Set expiry date to 3 days from now
+    const subscriptionDurationDays = 3; // Set duration to 3 days
     const expiryDate = new Date();
-    expiryDate.setDate(expiryDate.getDate() + subscriptionDurationDays); // Add 7 days to the current date
+    expiryDate.setDate(expiryDate.getDate() + subscriptionDurationDays); // Add 3 days to the current time
 
     await Subscription.create(
       {
         userId: user.id,
         subscriptionStatus: "active",
         subscriptionExpiry: expiryDate,
-        duration: subscriptionDurationDays, // Duration set in days
+        duration: subscriptionDurationDays * 24 * 60, // Convert days to minutes
       },
       { transaction }
     );

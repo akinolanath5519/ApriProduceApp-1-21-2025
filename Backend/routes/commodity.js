@@ -40,21 +40,15 @@ router.post(
   }
 );
 
-// Get All Commodities with Pagination
+// Get All Commodities without Pagination
 router.get(
   "/commodity",
   authMiddleware,
   verifyAdminOrStandard,
   async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = (page - 1) * limit;
-
     try {
       const commodities = await Commodity.findAll({
-        where: { adminEmail: req.user.adminEmail },
-        limit,
-        offset,
+        where: { adminEmail: req.user.adminEmail }
       });
       if (process.env.NODE_ENV === 'development') {
         console.log(`Fetched commodities for user: ${req.user.adminEmail}`);
